@@ -57,12 +57,11 @@ $totalRows_admin = $query_admin->num_rows;
 
 $admin_id = $row_admin['admin_id'];
 
-$query_driver = $mysqli->query("SELECT * FROM `driver` WHERE status=2");
-$row_driver = $query_driver->fetch_assoc();
-$totalRows_driver = $query_driver->num_rows;
-
 $query_announcement = $mysqli->query("SELECT * FROM `announcement` ORDER BY datetime DESC");
 $totalRows_announcement = $query_announcement->num_rows;
+
+$query_car = $mysqli->query("SELECT * FROM `car` WHERE status=1");
+$totalRows_car = $query_car->num_rows;
 
 ?>
 <!DOCTYPE html>
@@ -168,13 +167,42 @@ $totalRows_announcement = $query_announcement->num_rows;
           </table>
       </div>
 
-    </div>
+      <div class="well">
+        <h4>Available Car for Rent</h4>
 
-    
-</div>
+        <table class="table table-bordered">
+            <thead>
+              <tr class="text-centered">
+                <th style="width: 5%;">#</th>
+                <th style="width: 45%; text-align: left;">Car Model</th>
+                <th style="width: 25%; text-align: left;">Plat Number</th>
+                <th style="width: 25%; text-align: left;">Transmission</th>
+                <th style="width: 25%; text-align: left;">Colour</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $i = 0;
+              while($row_car = $query_car->fetch_assoc())
+              {
+                  $i++;
+                  ?>
+                  <tr>
+                    <td><?=$i?></td>
+                    <td><?=$row_car['car_model']?></td>
+                    <td><?=$row_car['car_plat']?></td>
+                    <td><?=$row_car['transmission']?></td>
+                    <td><?=$row_car['color']?></td>
+                  </tr>
+  
+                <?php
 
-
-    </div>
+              };
+              ?>
+              
+            </tbody>
+          </table>
+      </div>
     
   </div>
 </div>
