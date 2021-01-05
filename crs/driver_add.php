@@ -62,6 +62,42 @@ if (isset($_POST['expiry']))
   // A list of permitted file extensions
   $allowed = array('png', 'jpg', 'gif', 'pdf');
 
+if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
+  
+  $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+
+  if(!in_array(strtolower($extension), $allowed)){
+    echo '{"status":"error"}';
+    exit;
+  }
+  
+  $logotemp = md5($_POST['expiry']);
+  $dir="img/receipt/";
+  $temp = explode(".", $_FILES["image"]["name"]);
+  $newfilename = $admin_id.".pdf";
+  $dir2=$dir.$newfilename;
+  $dir3="img/receipt/".$newfilename;  //display at frontend
+  
+  if(move_uploaded_file($_FILES["image"]["tmp_name"], $dir2)){ 
+    
+  }
+}
+    
+  $maintenance_id = md5($air_filter.microtime(true));
+
+  $expiry = date('Y-m-d', strtotime($expiry));
+
+  $sql = "INSERT INTO `driver`(`driver_id`, `expiry`, `nationality`, `licence_number`, `status`, `licence_copy`) VALUES ('$admin_id', '$expiry', '$nationality', '$licence_number', 2, '$dir3')";
+
+  if (mysqli_query($mysqli, $sql)) {
+      $insertGoTo = "driver.php?notif=success";
+      header(sprintf("Location: %s", $insertGoTo));
+  } else {
+      $insertGoTo = "driver.php?notif=failed";
+      header(sprintf("Location: %s", $insertGoTo));
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
