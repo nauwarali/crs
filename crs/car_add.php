@@ -53,6 +53,24 @@ $query_admin = $mysqli->query("SELECT * FROM `admin` WHERE username='$username' 
 $row_admin = $query_admin->fetch_assoc();
 $totalRows_admin = $query_admin->num_rows;
 
+
+if (isset($_POST['car_plat'])) 
+{
+  extract($_POST);
+
+  $car_id = md5($car_model.microtime(true));
+
+  $sql = "INSERT INTO car(car_plat, car_model, transmission, color, status, car_id, admin_id) VALUES ('$car_plat', '$car_model', '$transmission', '$color',  1, '$car_id', '$admin_id')";
+
+  if (mysqli_query($mysqli, $sql)) {
+      $insertGoTo = "car.php?notif=success";
+      header(sprintf("Location: %s", $insertGoTo));
+  } else {
+      $insertGoTo = "car.php?notif=failed";
+      header(sprintf("Location: %s", $insertGoTo));
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
