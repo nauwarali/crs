@@ -149,11 +149,11 @@
       <div class="logo">
       	<?php
           if ($row_setting['style'] == 1) {
-            echo "<img style='width: 100%; height: 100%;' src='img/logo2.png'>";
+            echo "<img style='width: 100%; height: 100%;' src='img/bbb.png'>";
           }
           else
           {
-             echo "<img style='width: 100%; height: 100%;' src='img/logo.png'>";
+             echo "<img style='width: 100%; height: 100%;' src='img/aaa.png'>";
           };
   		?>
       </div>
