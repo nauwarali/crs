@@ -92,6 +92,7 @@ if (isset($_POST['username'])) {
      echo "<link rel='stylesheet' href='vendor/style.css'>";
   };
   ?>
+  <link rel="icon" href="img/ccc.png" sizes="32x32"> <!-- change browser tab icon -->
   
   <link rel="stylesheet" href="vendor/fontawesome.css">
   <link rel="stylesheet" href="vendor/style3.css">
@@ -104,7 +105,7 @@ if (isset($_POST['username'])) {
 
   <form action="index.php" method="POST">
     <div class="container" style="height: 380px; margin-top: 150px; width: 300px; background-color: #fff; box-shadow: 2px 5px 10px;">
-      <img style='width: 200px; height: 50px; display: block; margin: auto;' src='img/logo2.png'>
+      <img style='width: 200px; height: 50px; display: block; margin: auto;' src='img/bbb.png'>
       <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="username" required>
 
